@@ -1,0 +1,35 @@
+header {
+    background-color: #b19dc9;
+}
+
+.nav-link {
+    color: #573f73;
+}
+
+.nav-link {
+    background-color: #573f73;
+    margin: 5px;
+    color: white;
+    border: 5px solid #D2b55b;
+}
+
+body {
+    background-color: lavender;
+    color: black;
+}
+
+.container {
+    background-color: lavender;
+    padding-top: 25px;
+}
+
+.card {
+    margin-top: 5px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 250px;
+}
+
+.btn-primary {
+    margin: 5px;
+}

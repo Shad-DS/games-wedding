@@ -1,0 +1,21 @@
+{% from "bootstrap5/form.html" import render_form %}
+{% extends 'base.html' %}
+{% block title %}Find A Game!{% endblock %}
+
+{% block content %}
+
+<h3>Find a game to play!</h3>
+<hr class="my-4" />
+<p>Use the form below to find a game to play from our collection!</p>
+<p>If you don't want to fill out a form, you can always click on the "Random Game" button to get a game suggested at random!</p>
+
+
+<div class="form">
+
+{{ render_form(form, novalidate=True) }}
+
+</div>
+
+<a class="btn btn-primary" href="{{ url_for('random_game') }}">Random Game!</a>
+
+{% endblock %}

@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block title %}Game Choice!{% endblock %}
+
+{% block content %}
+{% for game in games %}
+<div class="card mb-4 rounded-3 shadow-sm">
+    <div class="card-header py-3">
+      <h4 class="my-0 fw-normal">{{ game.name }}</h4>
+    </div>
+    <div class="card-body">
+      <img src="{{ game.image_url }}" alt="Game image" style="width:200px;">
+      <ul class="list-unstyled mt-3 mb-4">
+        <li><b>Minimum players:</b> {{ game.min_players }}</li>
+        <li><b>Maximum players:</b> {{ game.max_players }}</li>
+        <li><b>Average Playing Time:</b> {{ game.avg_playing_time }}</li>
+        <li><b>Difficulty (out of 5):</b> {{ game.difficulty }}</li>
+        <li><b>Game type:</b> {{ game.categories }}</li>
+        <li><a class="btn btn-primary" href="{{ game.tutorial }}">Link to Tutorial</a></li>
+      </ul>
+    </div>
+  </div>
+{% endfor %}
+
+{% endblock %}
