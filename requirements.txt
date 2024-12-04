@@ -1,0 +1,9 @@
+sqlalchemy
+Flask
+Bootstrap-Flask
+Flask-WTF
+WTForms
+flask_sqlalchemy
+SQLAlchemy
+gunicorn
+psycopg2-binary

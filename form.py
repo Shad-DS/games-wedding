@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import SelectField, SubmitField, SelectMultipleField
+from wtforms import SelectField, SelectMultipleField, SubmitField
 from wtforms.validators import DataRequired
 
 
@@ -58,15 +58,15 @@ class GameForm(FlaskForm):
     )
     submit = SubmitField("Find me a game!")
 
-    def validate(self, extra_validators=None):                                                      
+    def validate(self, extra_validators=None):
 
-        rv = FlaskForm.validate(self)                                           
+        rv = FlaskForm.validate(self)
 
-        if not rv:                                                              
-            return False                                                                                                    
+        if not rv:
+            return False
 
-        if len(self.choice.data) > 1:                                          
-            self.choice.errors.append('Please select no more than 1 category.')    
-            return False                                                        
+        if len(self.choice.data) > 1:
+            self.choice.errors.append('Please select no more than 1 category.')
+            return False
 
-        return True 
+        return True

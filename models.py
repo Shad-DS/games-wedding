@@ -1,6 +1,7 @@
 from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy import Boolean, Integer, String, Text
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
-from sqlalchemy import Integer, String, Text, Boolean
+
 
 # CREATE DATABASE
 class Base(DeclarativeBase):
@@ -21,3 +22,4 @@ class Game(db.Model):
     difficulty: Mapped[int] = mapped_column(Integer, nullable=True)
     tutorial: Mapped[str] = mapped_column(Text, nullable=True)
     image_url: Mapped[str] = mapped_column(Text, nullable=True)
+    description: Mapped[str] = mapped_column(Text, nullable=True)
