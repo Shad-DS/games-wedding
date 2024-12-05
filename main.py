@@ -8,7 +8,7 @@ from form import GameForm
 from models import Game, db
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = os.environ.get("FLASK_KEY") # Should be a random string, as env variable
+app.config['SECRET_KEY'] = "secret_key" # os.environ.get("FLASK_KEY") # Should be a random string, as env variable
 Bootstrap5(app)
 
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("DB_URI", 'sqlite:///games.db')
@@ -48,13 +48,18 @@ def welcome():
         games = db.session.execute(
             db.select(Game).where(
                 (Game.min_players <= int(form.n_players.data)) &
+                (Game.max_players >= int(form.n_players.data)) &
                 (Game.avg_playing_time <= int(form.playing_time.data)) &
-                (Game.adult_only == eval(form.adults.data)) &
-                (Game.categories.like(f"%{form.choice.data[0]}"))
+                (Game.categories.like(f"%{form.choice.data[0]}%"))
             ).order_by(func.random()).limit(3)
         )
         results = games.scalars().all()
-        return render_template("game.html", games=results)
+        filtered_results = []
+        if len(form.choice.data) == 2:
+            for game in results:
+                if form.choice.data[1] in game.categories:
+                    filtered_results.append(game)
+        return render_template("game.html", games=filtered_results if len(filtered_results) > 0 else results)
     return render_template("index.html", form=form)
 
 @app.route("/all-games")

@@ -19,7 +19,6 @@ class GameForm(FlaskForm):
                 ('Cooperative', 'Cooperative'),
                 ('Prehistoric', 'Prehistoric'),
                 ('Deduction', 'Deduction'),
-                ('Ecomonic', 'Ecomonic'),
                 ('Renaissance', 'Renaissance'),
                 ('Educational', 'Educational'),
                 ('Horror', 'Horror'),
@@ -46,11 +45,7 @@ class GameForm(FlaskForm):
                 ('Puzzle', 'Puzzle')],
         validators=[DataRequired()],
     )
-    adults = SelectField(
-        label="Are children (< 8 yrs old) playing?", 
-        choices=[("False", "Yes"), ("True", "No")],
-        validators=[DataRequired()]
-    )
+
     playing_time = SelectField(
         label="How long would you like to play for?",
         choices=[("15", "15min"), ("30", "30min"), ("45", "45min"), ("60", "1hr")],
@@ -65,8 +60,8 @@ class GameForm(FlaskForm):
         if not rv:
             return False
 
-        if len(self.choice.data) > 1:
-            self.choice.errors.append('Please select no more than 1 category.')
+        if len(self.choice.data) > 2:
+            self.choice.errors.append('Please select no more than 2 categories.')
             return False
 
         return True
