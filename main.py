@@ -35,7 +35,8 @@ with app.app_context():
                     categories=g[6],
                     difficulty=g[7],
                     tutorial=g[8],
-                    image_url=g[9]
+                    image_url=g[9],
+                    description=g[-1]
                 )
             )
         db.session.bulk_save_objects(games_to_add)
@@ -66,6 +67,7 @@ def welcome():
 def all_games():
     result = db.session.execute(db.select(Game))
     games = result.scalars().all()
+    print(dir(games[0]))
     return render_template("game.html", games=games)
 
 # Add a POST method to redirect to a game info page
